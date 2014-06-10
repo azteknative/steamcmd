@@ -24,6 +24,23 @@ user node[:steamcmd][:user] do
   shell "/bin/bash"
 end
 
+# Install 32-bit compatibility libraries if necessary
+if node[:kernel][:machine] == 'x86_64'
+  compat_libs = value_for_platform(
+    [ 'ubuntu', 'debian' ]  => {
+      'default' => [ 'lib32gcc1' ]
+    },
+    [ 'centos', 'fedora' ] => {
+      'default' => [ 'glibc.i686', 'libstdc++.i686']
+    })
+
+  compat_libs.each do |lib|
+    package lib do
+      action :install
+    end
+  end
+end
+
 # Retrieve steamcmd archive
 remote_file "/tmp/steamcmd_linux.tar.gz" do
   source "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
