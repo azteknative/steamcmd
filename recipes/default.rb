@@ -18,7 +18,10 @@ end
 
 user node[:steamcmd][:user] do
   action :create
+  supports :manage_home => true
   gid node[:steamcmd][:group]
+  home "/home/#{node[:steamcmd][:user]}"
+  shell "/bin/bash"
 end
 
 # Retrieve steamcmd archive
