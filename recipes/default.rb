@@ -7,6 +7,10 @@
 # All rights reserved - Do Not Redistribute
 #
 
+if node[:platform_family] == "debian"
+  include_recipe "apt"
+end
+
 # Create user and group
 group node[:steamcmd][:group] do
   action :create
@@ -58,5 +62,13 @@ bash "extract_steamcmd" do
   user node[:steamcmd][:user]
 end
 
+# Initial run of SteamCMD - should download and install relevant libs and tools for the
+# host platform.
 
-
+bash "run-steam" do
+  cwd node[:steamcmd][:install_path]
+  user node[:steamcmd][:user]
+  code "./steamcmd.sh <<EOF
+quit
+EOF"
+end
