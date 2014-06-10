@@ -6,12 +6,26 @@ provide a means to install games as part of a Chef run.
 
 Requirements
 ------------
+* Currently only supported on Linux, specifically: Ubuntu and CentOS.
 
 Attributes
 ----------
+* `[:steamcmd][:user]` - user who "owns" the installed application.
+* `[:steamcmd][:group]` - primary group of the above user.
+* `[:steamcmd][:additional_users]` - any additional users that should be a member of the above group.
+* `[:steamcmd][:install_path]` - base installation path for the SteamCMD utility.
+
+Recipes
+-------
+### default
+Takes care of the installation of the SteamCMD utility and runs it for the first time to take care of the initial download and configuration of the platform-specific components.
+
 
 Usage
 -----
+Simply including the `steamcmd::default` recipe in your runlist will result in the SteamCMD utility
+being downloaded and an initial execution of the tool in order to run through the
+initial setup/config.
 
 Contributing
 ------------
