@@ -78,6 +78,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       }
     }
 
+    chef.log_level = :debug
+
     chef.run_list = [
         "recipe[steamcmd::default]"
     ]
