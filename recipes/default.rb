@@ -46,7 +46,7 @@ if node[:kernel][:machine] == 'x86_64'
 end
 
 # Retrieve steamcmd archive
-remote_file "/tmp/steamcmd_linux.tar.gz" do
+remote_file "#{Chef::Config[:file_cache_path]}/steamcmd_linux.tar.gz" do
   source "http://media.steampowered.com/installer/steamcmd_linux.tar.gz"
 end
 
@@ -58,17 +58,7 @@ directory node[:steamcmd][:install_path] do
 end
 
 bash "extract_steamcmd" do
-  code "tar xzf /tmp/steamcmd_linux.tar.gz -C #{node[:steamcmd][:install_path]}"
+  code "tar xzf #{Chef::Config[:file_cache_path]}/steamcmd_linux.tar.gz -C #{node[:steamcmd][:install_path]}"
   user node[:steamcmd][:user]
 end
 
-# Initial run of SteamCMD - should download and install relevant libs and tools for the
-# host platform.
-
-bash "run-steam" do
-  cwd node[:steamcmd][:install_path]
-  user node[:steamcmd][:user]
-  code "./steamcmd.sh <<EOF
-quit
-EOF"
-end
