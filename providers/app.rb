@@ -8,7 +8,7 @@ action :install do
     mode "0775"
   end
 
-  run_cli("+force_install_dir #{new_resource.base_path}/#{new_resource.name} +app_update #{new_resource.app_id}")
+  run_cli("+force_install_dir #{new_resource.base_path}/#{new_resource.name} +app_update #{new_resource.app_id} validate")
 
   #run_cli "install-#{new_resource.name}" do
   #  cli_args "+force_install_dir #{new_resource.base_path}/#{new_resource.name} +app_update #{new_resource.app_id}"
