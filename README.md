@@ -1,7 +1,7 @@
 steamcmd Cookbook
 =================
 
-The aim of this cookbook is to install the SteamCMD utility and (eventually
+The aim of this cookbook is to install the SteamCMD utility and (eventually)
 provide a means to install games as part of a Chef run.
 
 This cookbook can be tested via the included Berkshelf and Vagrant configs, however there is one caveat: often when working locally, the installation of applications/games can bail out. This seems to affect longer running installations (such as CSGO) and I've not experienced this issue when working "in the cloud".
