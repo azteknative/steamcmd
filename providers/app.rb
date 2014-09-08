@@ -32,13 +32,6 @@ action :install do
 
   run_cli("+force_install_dir #{new_resource.base_path}/#{new_resource.name} +app_update #{new_resource.app_id} validate")
 
-  #run_cli "install-#{new_resource.name}" do
-  #  cli_args "+force_install_dir #{new_resource.base_path}/#{new_resource.name} +app_update #{new_resource.app_id}"
-  #  cli_user new_resource.user
-  #  steam_user new_resource.steam_user
-  #  steam_password new_resource.steam_password
-  #end
-
   #new_resource.updated_by_last_action(true)
 
 end
