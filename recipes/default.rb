@@ -28,6 +28,12 @@ user node[:steamcmd][:user] do
   shell "/bin/bash"
 end
 
+# Increase number of file descriptors allowed for
+# this user
+user_ulimit "steam" do
+  filehandle_limit 8192
+end
+
 # Install 32-bit compatibility libraries if necessary
 if node[:kernel][:machine] == 'x86_64'
   compat_libs = value_for_platform(
