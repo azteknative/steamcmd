@@ -31,6 +31,7 @@ def run_cli(cli_args)
     else
       code "./steamcmd.sh +runscript +login #{new_resource.steam_user} #{new_resources.steam_password} #{cli_args} +quit"
     end
+    timeout 7200
   end
 
 end
