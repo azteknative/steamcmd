@@ -4,6 +4,8 @@ steamcmd Cookbook
 The aim of this cookbook is to install the SteamCMD utility and (eventually
 provide a means to install games as part of a Chef run.
 
+This cookbook can be tested via the included Berkshelf and Vagrant configs, however there is one caveat: often when working locally, the installation of applications/games can bail out. This seems to affect longer running installations (such as CSGO) and I've not experienced this issue when working "in the cloud".
+
 Requirements
 ------------
 * Currently only supported on Linux, specifically: Ubuntu and CentOS.
@@ -14,12 +16,29 @@ Attributes
 * `[:steamcmd][:group]` - primary group of the above user.
 * `[:steamcmd][:additional_users]` - any additional users that should be a member of the above group.
 * `[:steamcmd][:install_path]` - base installation path for the SteamCMD utility.
+* `[:steamcmd][:steam_username]` - user to authenticate to the Steam service as; defaults to "anonymous".
+* `[:steamcmd][:steam_passsword] - password to authenticate to the Steam servie; defaults to `nil` (necessary for anonymous auth).
 
 Recipes
 -------
 ### default
 Takes care of the installation of the SteamCMD utility and runs it for the first time to take care of the initial download and configuration of the platform-specific components.
 
+### csgo
+Example recipe demonstrating the use of the LWRP to install Counter Strike: Global Offensive.
+
+LWRP
+----
+
+### app
+Used to manage applications/games available through the Steam platform. Currently can only manage installation via the `:install` action. For example, installing CSGO:
+
+```
+steamcmd_app "csgo" do
+  action :install
+  app_id 740
+end
+```
 
 Usage
 -----
