@@ -17,7 +17,7 @@ Attributes
 * `[:steamcmd][:additional_users]` - any additional users that should be a member of the above group.
 * `[:steamcmd][:install_path]` - base installation path for the SteamCMD utility.
 * `[:steamcmd][:steam_username]` - user to authenticate to the Steam service as; defaults to "anonymous".
-* `[:steamcmd][:steam_passsword] - password to authenticate to the Steam servie; defaults to `nil` (necessary for anonymous auth).
+* `[:steamcmd][:steam_passsword`] - password to authenticate to the Steam servie; defaults to `nil` (necessary for anonymous auth).
 
 Recipes
 -------
