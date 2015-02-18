@@ -44,7 +44,7 @@ def run_cli(cli_args)
     if new_resource.steam_password == nil
       code "./steamcmd.sh +runscript +login #{new_resource.steam_user} #{cli_args} +quit"
     else
-      code "./steamcmd.sh +runscript +login #{new_resource.steam_user} #{new_resource.steam_password} #{cli_args} +quit"
+      code "./steamcmd.sh +runscript +login #{new_resource.steam_user} \"#{new_resource.steam_password}\" #{cli_args} +quit"
     end
     timeout 7200
   end
