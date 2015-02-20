@@ -37,5 +37,5 @@ default[:steamcmd][:steam_username] = "anonymous"
 default[:steamcmd][:steam_password] = nil
 
 # Default install base for games/applications
-default[:steamcmd][:steam_library_dir]
+default[:steamcmd][:steam_library_dir] = "/usr/local/games"
 
