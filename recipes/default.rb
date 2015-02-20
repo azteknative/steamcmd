@@ -52,7 +52,7 @@ end
 if node[:kernel][:machine] == 'x86_64'
   compat_libs = value_for_platform(
     [ 'ubuntu', 'debian' ]  => {
-      'default' => [ 'lib32gcc1' ]
+      'default' => [ 'lib32gcc1', 'lib32stdc++6' ]
     },
     [ 'centos', 'fedora' ] => {
       'default' => [ 'glibc.i686', 'libstdc++.i686']
