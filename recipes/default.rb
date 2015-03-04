@@ -80,5 +80,15 @@ end
 bash "extract_steamcmd" do
   code "tar xzf #{Chef::Config[:file_cache_path]}/steamcmd_linux.tar.gz -C #{node[:steamcmd][:install_path]}"
   user node[:steamcmd][:user]
+  not_if <<EOT
+for f in `tar tzf #{Chef::Config[:file_cache_path]}/steamcmd_linux.tar.gz`
+do
+  if [ ! -e "#{node[:steamcmd][:install_path]}/$f" ]
+  then
+    exit 1
+  fi
+done
+exit 0
+EOT
 end
 
